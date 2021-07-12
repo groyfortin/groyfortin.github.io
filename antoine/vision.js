@@ -1,5 +1,6 @@
 
 var notYetTranslated = true;
+var focalCoeff = 0;
 
 function draw()
 {
@@ -17,7 +18,7 @@ function draw()
 
 		/* On charge les infos de la pupille */
 		var xPup = Number(document.getElementById("xPup").value);
-		var yPup = Number(document.getElementById("yPup").value);
+		var yPup = -Number(document.getElementById("yPup").value);
 		var rPup = Number(document.getElementById("diamPup").value);
 		
 		
@@ -77,8 +78,11 @@ function draw()
 		console.log("isfocal point: 5, -5" + isFocalPoint(rIntLen, rExtLen, alpha, 0, 5));
 		computeCoeff(ctx, rIntLen, rExtLen, alpha, xPup, yPup, rPup, 10);
 
-
 		ctx.translate(-xOrigin, -yOrigin);
+		
+		var textZone = document.getElementById('output_text');
+		textZone.innerHTML = "Coefficient focal: " + focalCoeff;
+		
 }
 
 function computeCoeff(ctx, rIntLen, rExtLen, alpha, xPup, yPup, rPup, nbSamplePoints)
@@ -115,7 +119,7 @@ function computeCoeff(ctx, rIntLen, rExtLen, alpha, xPup, yPup, rPup, nbSamplePo
 		
 	}
 	
-	var focalCoeff = focalPointsCount / diskPointsCount;
+	focalCoeff = focalPointsCount / diskPointsCount;
 	console.log("coeffiencient focal: " + focalCoeff);
 	
 	
