@@ -79,7 +79,7 @@ function draw()
 		computeCoeff(ctx, rIntLen, rExtLen, alpha, xPup, yPup, rPup, 10);
 
 		ctx.translate(-xOrigin, -yOrigin);
-		
+		 
 		var textZone = document.getElementById('output_text');
 		textZone.innerHTML = "Coefficient focal: " + focalCoeff;
 		
