@@ -1,0 +1,81 @@
+<p><!DOCTYPE html>
+<head>
+  <title> Visualisation de lentille. </title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="fcnn.css">
+</head></p>
+
+
+<script src="vision.js"></script>
+
+<h1>Lentilles et pupilles.</h1>
+
+<p>On essaie ici de mesurer et visualiser le coefficient de vision focale. Plus précisément, étant
+	donnée la pupille d'un patient ainsi qu'une lentille bifocale, quelle est la proportion de l'aire de la
+	pupille qui recouvre la portion de la lentille qui permet de voir de près ?</p>
+
+<div id="output-display-area"></div>
+
+<h2>Paramètres géométriques</h2>
+Fixez les différents paramètres géométriques. L'origine du plan cartésien est placé au centre (0,0) de la lentille.
+<br>
+<br>
+<br>
+
+<h3> Lentille </h3>
+
+<div class="lent">
+<table>
+  <col align="left">
+  <col align="left">
+  <col align="left">
+  <col align="left">
+  <col align="left">
+  <col align="left">
+  <col align="left">
+  <tr>
+  	<td>Diamètre extérieur</td>  
+    <td><input type="text" min="1" max="500" value="100" class="text" id="diamExtLen"></td>
+ 	</tr>
+ 	<tr>
+  	<td>Diamnètre intérieur</td>  
+    <td><input type="text" min="1" max="500" value="15" class="text" id="diamIntLen"></td>
+ 	</tr>
+ 	<tr>
+  	<td>Angle focal (radian) </td>  
+    <td><input type="text" min="1" max="500" value="1.4" class="text" id="alpha"></td>
+ 	</tr> 
+</table>
+</div>
+
+<h3> Pupille </h3>
+
+<div class="pup">
+<table>
+  <col align="left">
+  <col align="left">
+  <col align="left">
+  <col align="left">
+  <col align="left">
+  <col align="left">
+  <col align="left">
+  <tr>
+  	<td>Diamètre</td>  
+    <td><input type="text" min="1" max="500" value="40" class="text" id="diamPup"></td>
+ 	</tr>
+ 	<tr>
+  	<td>Coordonnée x</td>  
+    <td><input type="text" min="1" max="500" value="-6.1" class="text" id="xPup"></td>
+ 	</tr>
+ 	<tr>
+  	<td>Coordonnée y</td>  
+    <td><input type="text" min="1" max="500" value="11.3" class="text" id="yPup"></td>
+ 	</tr>
+ 	<td><button id="setToZero" onclick="draw()">Calculer</button> 
+</table>
+</div>
+
+
+<canvas id="circle" width="500" height="500"></canvas>
+
+<p></html></p>
