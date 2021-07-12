@@ -1,6 +1,4 @@
 
-var notYetTranslated = true;
-var focalCoeff = 0;
 
 function draw()
 {
@@ -76,7 +74,7 @@ function draw()
 		
 		
 		console.log("isfocal point: 5, -5" + isFocalPoint(rIntLen, rExtLen, alpha, 0, 5));
-		computeCoeff(ctx, rIntLen, rExtLen, alpha, xPup, yPup, rPup, 10);
+		var focalCoeff = computeCoeff(ctx, rIntLen, rExtLen, alpha, xPup, yPup, rPup, 10);
 
 		ctx.translate(-xOrigin, -yOrigin);
 		 
@@ -121,6 +119,8 @@ function computeCoeff(ctx, rIntLen, rExtLen, alpha, xPup, yPup, rPup, nbSamplePo
 	
 	focalCoeff = focalPointsCount / diskPointsCount;
 	console.log("coeffiencient focal: " + focalCoeff);
+	
+	return focalCoeff;
 	
 	
 	
