@@ -25,7 +25,7 @@ function draw()
 		/* ... et de la lentille */
 		var rIntLen = Number(document.getElementById("diamIntLen").value) * SCALE;
 		var rExtLen = Number(document.getElementById("diamExtLen").value) * SCALE;
-		var alpha = Number(document.getElementById("alpha").value);
+		var alpha = Number(document.getElementById("alpha").value) / 180 * Math.PI;
 	
 		
 		
