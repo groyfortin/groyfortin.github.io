@@ -15,14 +15,16 @@ function draw()
 		ctx.translate(xOrigin, yOrigin);
 
 		/* On charge les infos de la pupille */
-		var xPup = Number(document.getElementById("xPup").value);
-		var yPup = -Number(document.getElementById("yPup").value);
-		var rPup = Number(document.getElementById("diamPup").value);
+		/* Échelle: 1mm = 50 pixels */
+		const SCALE = 20;
+		var xPup = Number(document.getElementById("xPup").value) * SCALE;
+		var yPup = -Number(document.getElementById("yPup").value) * SCALE;
+		var rPup = Number(document.getElementById("diamPup").value) * SCALE;
 		
 		
 		/* ... et de la lentille */
-		var rIntLen = Number(document.getElementById("diamIntLen").value);
-		var rExtLen = Number(document.getElementById("diamExtLen").value);
+		var rIntLen = Number(document.getElementById("diamIntLen").value) * SCALE;
+		var rExtLen = Number(document.getElementById("diamExtLen").value) * SCALE;
 		var alpha = Number(document.getElementById("alpha").value);
 	
 		
