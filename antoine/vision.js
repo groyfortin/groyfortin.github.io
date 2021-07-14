@@ -45,6 +45,52 @@ function draw()
 		ctx.stroke();
 		ctx.closePath();
 		
+		
+		/* Tachons maintenant de tracer les axes */
+		ctx.beginPath();
+		ctx.moveTo(-260, 0);
+		ctx.lineTo(260, 0);
+		ctx.stroke();
+		ctx.closePath();
+
+		ctx.beginPath();
+		ctx.moveTo(0, 260);
+		ctx.lineTo(0, -260);
+		ctx.stroke();
+		ctx.closePath();
+		
+		
+		for(i = 1; i <= 12; i++)
+		{
+			ctx.beginPath();
+			ctx.moveTo(i * SCALE, 5);
+			ctx.lineTo(i * SCALE, -5);
+			ctx.stroke();
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.moveTo(-(i * SCALE), 5);
+			ctx.lineTo(-(i * SCALE), -5);
+			ctx.stroke();
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.moveTo(-5, i*SCALE);
+			ctx.lineTo(5, i*SCALE);
+			ctx.stroke();
+			ctx.closePath();
+			
+			
+			ctx.beginPath();
+			ctx.moveTo(-5, -(i*SCALE));
+			ctx.lineTo(5, -(i*SCALE));
+			ctx.stroke();
+			ctx.closePath();
+		
+			
+		}
+		
+		
 		/* segments de droites qui déterminent la frontière de la partie focale */
 		var angleTmp = (Math.PI - alpha)/2;
 		var xInTmp = rIntLen*Math.cos(angleTmp);
