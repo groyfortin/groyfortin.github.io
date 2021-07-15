@@ -26,9 +26,24 @@ function draw()
 		var rIntLen = Number(document.getElementById("diamIntLen").value) * SCALE;
 		var rExtLen = Number(document.getElementById("diamExtLen").value) * SCALE;
 		var alpha = Number(document.getElementById("alpha").value) / 180 * Math.PI;
-		var beta = (Number(document.getElementById("beta").value) / 180 * Math.PI);
 		/**/
+	
 		
+		const OFFSET = 0.3;
+		/* on trace la lentille */
+		ctx.beginPath();
+		ctx.arc(0, 0, rExtLen, 0, 2 * Math.PI, false);
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = '0000000';
+		ctx.stroke();
+		ctx.closePath();
+		
+		ctx.beginPath();
+		ctx.arc(0, 0, rIntLen, (Math.PI - alpha)/2 , (Math.PI + alpha)/2, false);
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = '0000000';
+		ctx.stroke();
+		ctx.closePath();
 		
 		
 		/* Tachons maintenant de tracer les axes */
@@ -71,30 +86,13 @@ function draw()
 			ctx.lineTo(5, -(i*SCALE));
 			ctx.stroke();
 			ctx.closePath();
+		
+			
 		}
 		
 		
-		/* on trace la lentille */
-		ctx.beginPath();
-		ctx.arc(0, 0, rExtLen, 0, 2 * Math.PI, false);
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = '0000000';
-		ctx.stroke();
-		ctx.closePath();
-		
-		ctx.beginPath();
-		ctx.arc(0, 0, rIntLen, ((Math.PI - alpha)/2) + beta , ((Math.PI + alpha)/2) + beta, false);
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = '0000000';
-		ctx.stroke();
-		ctx.closePath();
-		
-		
-		console.log("angle beta: " + beta);
-		
-		
 		/* segments de droites qui déterminent la frontière de la partie focale */
-		var angleTmp = ((Math.PI - alpha)/2) + beta;
+		var angleTmp = (Math.PI - alpha)/2;
 		var xInTmp = rIntLen*Math.cos(angleTmp);
 		var yInTmp = rIntLen*Math.sin(angleTmp);
 		
@@ -108,21 +106,12 @@ function draw()
 		ctx.stroke();
 		ctx.closePath();
 		
-		angleTmp = Math.PI - ((Math.PI - alpha)/2) + beta;
-		xInTmp = rIntLen*Math.cos(angleTmp);
-		yInTmp = rIntLen*Math.sin(angleTmp);
-		
-		xOutTmp = rExtLen*Math.cos(angleTmp);
-		yOutTmp = rExtLen*Math.sin(angleTmp);
-	
 		
 		ctx.beginPath();
-		ctx.moveTo(xInTmp, yInTmp);
-		ctx.lineTo(xOutTmp, yOutTmp);
+		ctx.moveTo(-xInTmp, yInTmp);
+		ctx.lineTo(-xOutTmp, yOutTmp);
 		ctx.stroke();
 		ctx.closePath();
-		
-		
 		/* ... et la pupille */
 		ctx.beginPath();
 		ctx.arc(xPup, yPup, rPup, 0, 2 * Math.PI, false);
@@ -134,7 +123,7 @@ function draw()
 		
 		
 		console.log("isfocal point: 5, -5" + isFocalPoint(rIntLen, rExtLen, alpha, 0, 5));
-		var focalCoeff = computeCoeff(ctx, rIntLen, rExtLen, alpha, beta, xPup, yPup, rPup, 10);
+		var focalCoeff = computeCoeff(ctx, rIntLen, rExtLen, alpha, xPup, yPup, rPup, 10);
 
 		ctx.translate(-xOrigin, -yOrigin);
 		 
@@ -143,7 +132,7 @@ function draw()
 		
 }
 
-function computeCoeff(ctx, rIntLen, rExtLen, alpha, beta, xPup, yPup, rPup, nbSamplePoints)
+function computeCoeff(ctx, rIntLen, rExtLen, alpha, xPup, yPup, rPup, nbSamplePoints)
 {
 	
 	/* On va gonfler le disque de la pupille */
@@ -164,7 +153,7 @@ function computeCoeff(ctx, rIntLen, rExtLen, alpha, beta, xPup, yPup, rPup, nbSa
 				/* on fait une homothétie et une translation pour obtenir un point de la pupille */
 				currX = (xStep / 100 * rPup) + xPup;
 				currY = (yStep / 100 * rPup) + yPup;
-				if(isFocalPoint(rIntLen, rExtLen, alpha, beta, currX, currY))
+				if(isFocalPoint(rIntLen, rExtLen, alpha, currX, -currY))
 				{
 					ctx.fillRect(currX,currY, 1,1);
 					focalPointsCount++;
@@ -176,10 +165,6 @@ function computeCoeff(ctx, rIntLen, rExtLen, alpha, beta, xPup, yPup, rPup, nbSa
 		}
 		
 	}
-	/*var xtest = 10;
-	var ytest = -10;
-	console.log("angle: " + Math.atan2(ytest, xtest));
-	ctx.fillRect(xtest,ytest, 5,5);*/
 	
 	focalCoeff = focalPointsCount / diskPointsCount;
 	console.log("coeffiencient focal: " + focalCoeff);
@@ -191,20 +176,40 @@ function computeCoeff(ctx, rIntLen, rExtLen, alpha, beta, xPup, yPup, rPup, nbSa
 }
 
 
-function isFocalPoint(rIntLen, rExtLen, alpha, beta, x, y)
+function isFocalPoint(rIntLen, rExtLen, alpha, x, y)
 {
 	
 	/* On commence par convertir x, y en coordonnées polaires */
-	var r = Math.sqrt(x*x + y*y); 
-	var theta = Math.atan2(y,x);
+	var r = Math.sqrt(x*x + y*y);
+	if(x!=0)
+	{
+		var theta= Math.atan(y/x);
+	}
+	else
+	{
+		var theta = Math.PI / 2;
+	}
 	
-	if(theta <= 0)
-		theta += 2*Math.PI;
+	/* On va transformer le theta recu pour qui'il corresponde à la manière usuelle de mesurer en radion */
+	if(x*y >= 0) 
+	{
+		if(x <= 0) 
+			theta += Math.PI;
+	}
+	else
+	{
+		if(x <= 0)
+			theta += Math.PI;
+		else
+			theta += (2*Math.PI);
+	}
 	
-	var tau = (Math.PI - alpha)/2;
+	/* arctan nous a retourné un angle dans le 4ème ou 1er quadrant. Si c'est dans le premier, 
+	 on veut décaler par un offset de pi pour revenir dans la 3ème */
+	 /*if(theta <= 0)
+	 	theta += Math.PI;*/
 	
-	
-	if(rIntLen <= r && r <= rExtLen && theta <= (Math.PI - tau + beta) && theta >= (tau + beta))
+	if(rIntLen <= r && r <= rExtLen && theta <= (3*Math.PI + alpha)/2 && theta >= (3*Math.PI - alpha)/2 )
 		return true;
 	else
 		return false;
