@@ -1,0 +1,26 @@
+
+:root { color-scheme: light; }
+html { font-family: Helvetica, Arial, sans-serif; color: black; background: white; }
+body { margin: 8px; background: white; }
+main { margin: 0; }
+a { color: #0000ee; }
+a:visited { color: #551a8b; }
+h1 { font-size: 1.5em; margin: .83em 0; }
+h2 { font-size: 1.2em; font-variant: small-caps; margin: 1em 0; }
+h3 { font-size: 1em; margin: 1.33em 0; }
+h4 { font-size: 1em; margin: 1.33em 0; }
+p, main { font-size: 90%; }
+hr { border: 0; border-top: 1px solid #888; margin: .5em 0; }
+img.portrait { float: right; width: 560px; max-width: 52%; height: auto; margin: 0 0 1em 1.5em; }
+.language { margin: 0 0 1em; font-size: 90%; }
+.contact { margin: 1em 0; }
+.list { padding-left: 2.5em; }
+.list li { margin-bottom: .35em; }
+.archive ul { padding-left: 2.5em; }
+.archive li { margin: 1em 0; }
+.archive li p { margin: 0; }
+.back { margin-top: 1em; }
+.clear { clear: both; }
+@media (max-width: 600px) {
+  img.portrait { float: none; width: 100%; max-width: 560px; margin: 0 0 1em; }
+}
