@@ -58,12 +58,12 @@ Les récents progrès fulgurants de l’IA ainsi que de nombreux incidents comme
 
 <br> 
 <br> 
-La transmission de l'information à travers les réseaux de neurones qui propulsent les IA modernes se réalise couche par couche. Devant le succès de ces modèles, il est naturel de se questionner sur ce qui est entreposé dans les neurones des couches intermédiaires pendant et après l'apprentissage. Est-il possible de déterminer quel type d'information un neurone aura fini par stocker ? C'est le problème fondamental de <i> l'interprétabilité, </i> qui vise à donner du sens à l'activation des neurones entraînés. Peut-on trouver des conditions sous lesquelles il est possible de dire que tel neurone joue tel rôle ? 
+La transmission de l'information à travers les réseaux de neurones qui propulsent les IA modernes se réalise couche par couche. Devant le succès (!) de ces modèles, il est naturel de se questionner sur ce qui est entreposé dans les neurones des couches intermédiaires pendant et après l'apprentissage. Est-il possible de déterminer quel type d'information un neurone aura fini par stocker ? C'est le problème fondamental de <i>l'interprétabilité</i>, qui vise à mieux comprendre les représentations internes des réseaux de neurones. 
 
 <br> 
 <br> 
 
-À partir des travaux de <a href="https://arxiv.org/pdf/2408.05284"> Elhage et al. (2022) </a> , on verra que le vecteur d'activation d'une couche neuronale peut parfois entreposer davantage d'information que sa dimension semble lui permettre. Un peu comme si on arrivait à ranger 5 types d'ustensiles dans un tiroir pourtant conçu pour en placer que 4, par exemple. Ce phénomène est appelé <i> superposition </i> et nous permet d'accorder plusieurs sens au rôle joué par un neurone en particulier, un principe appelé <i> polysémanticité. </i>
+À partir des travaux de <a href="https://transformer-circuits.pub/2022/toy_model/index.html"> Elhage et al. (2022) </a> , on verra que le vecteur d'activation d'une couche neuronale peut parfois entreposer davantage de caractéristiques que sa dimension semble le permettre. Un peu comme si on arrivait à ranger 5 types d'ustensiles dans un tiroir pourtant conçu pour en placer que 4, par exemple. Ce phénomène, appelé <i>superposition</i>, repose notamment sur le fait que toutes les caractéristiques ne sont pas présentes simultanément. Il permet aussi d'expliquer pourquoi un même neurone peut jouer plusieurs rôles distincts, un phénomène appelé <i>polysémanticité</i>.  C’est surtout l’algèbre linéaire qui nous permettra d'illustrer ces concepts.
 
 </li>
 <br>

@@ -58,12 +58,14 @@ The recent rapid advances in AI, together with numerous incidents such as the on
 
 <br> 
 <br> 
-The transmission of information through the neural networks that power modern AI happens layer by layer. Given the success of these models, it is natural to ask what is stored in the neurons of the intermediate layers during and after training. Is it possible to determine what type of information a given neuron will end up storing? This is the fundamental problem of <i> interpretability, </i> which aims to make sense of the activations of trained neurons. Can we find conditions under which we can say that a given neuron plays a given role? 
 
-<br> 
-<br> 
 
-Building on the work of <a href="https://arxiv.org/pdf/2408.05284"> Elhage et al. (2022) </a> , we will see that the activation vector of a neural layer can sometimes store more information than its dimension seems to allow. A bit like managing to fit 5 types of utensils into a drawer designed to hold only 4, for example. This phenomenon is called <i> superposition </i> and allows several meanings to be assigned to the role played by a particular neuron, a principle called <i> polysemanticity. </i>
+Information flows through the neural networks powering modern AI systems layer by layer. Given the success (!) of these models, it is natural to wonder what is stored in the neurons of intermediate layers during and after training. Is it possible to determine what kind of information a neuron ultimately learns to store? This is the fundamental problem of <i>interpretability</i>, which aims to better understand the internal representations of neural networks.
+
+<br>
+<br>
+
+Drawing on the work of <a href="https://transformer-circuits.pub/2022/toy_model/index.html">Elhage et al. (2022)</a>, we will see that the activation vector of a neural network layer can sometimes encode more features than its dimension would seem to allow. A bit like managing to fit 5 types of utensils into a drawer designed to hold only 4, for example. This phenomenon, known as <i>superposition</i>, relies in particular on the fact that not all features are present simultaneously. It also helps explain why a single neuron can play several distinct roles, a phenomenon known as <i>polysemanticity</i>. Linear algebra will be our main tool for illustrating these concepts.
 
 </li>
 <br>
